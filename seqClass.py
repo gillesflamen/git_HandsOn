@@ -31,4 +31,4 @@ if args.motif:
     if re.search(args.motif, args.seq):
         print("FOUND the motif")
     else:
-        print("NOT FOUND")
+        print("motif NOT FOUND")
