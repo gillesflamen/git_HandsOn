@@ -1,0 +1,68 @@
+1. Make a new branch called fix and move to it.
+
+# check which branch
+
+git branch
+
+# create the branch fix 
+
+git branch fix
+
+# go to motif 
+
+git checkout motif 
+
+
+2. Fix the seqClass.py script so that it is able to classify correctly any RNA or DNA sequence.
+
+I adapted these lines:
+
+args.seq = args.seq.upper().strip().replace(" ","")
+
+#here we are seaking for RNA DNA specific nucleotides
+if not re.search('^[ACGTU]+$', args.seq):
+    print ('The sequence is not DNA nor RNA')
+elif 'U' in args.seq and 'T' in args.seq:
+    print('The sequence is neither DNA nor RNA')
+elif re.search('U', args.seq):
+    print ('The sequence is RNA')
+elif re.search('T', args.seq):
+    print ('The sequence is DNA')
+else:
+    print ('The sequence can be DNA or RNA')
+ 
+
+# then I did 
+git add seqClass.py
+
+# and commited with a comment about my adjustments
+git commit 
+
+3. Merge the fix branch back to master.
+git checkout master
+
+git merge fix
+
+
+4. Make sure you add comments to explain your changes.
+done
+
+5. Stage and commit the changes on master in your local repository.
+done
+
+6. Push your commits on master to your GitHub repository.
+    Stage, commit and push your changes in the fix branch to your GitHub repository.
+    
+git push
+
+Username for 'https://github.com': flamen.gilles@gmail.com
+Password for 'https://flamen.gilles@gmail.com@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/gillesflamen/git_HandsOn/'
+
+
+I had this error.
+
+7. Together with a classmate, collaborate using Git and GitHub to create and modify a python script that computes, given a DNA or RNA sequence, the percentage of each nucleotide.
+
