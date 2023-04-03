@@ -13,23 +13,24 @@ if len(sys.argv) == 1:
 
 args = parser.parse_args()
 
-args.seq = args.seq.upper()                 # Note we just added this line
+args.seq = args.seq.upper().strip().replace(" ","")                 # Note we just added this line
 
 #here we are seaking for RNA DNA specific nucleotides
-if re.search('^[ACGTU]+$', args.seq):
-    if re.search('T', args.seq):
-        print ('The sequence is DNA')
-    elif re.search('U', args.seq):
-        print ('The sequence is RNA')
-    else:
-        print ('The sequence can be DNA or RNA')
-else:
+if not re.search('^[ACGTU]+$', args.seq):
     print ('The sequence is not DNA nor RNA')
+elif 'U' in args.seq and 'T' in args.seq:
+    print('The sequence is neither DNA nor RNA')
+elif re.search('U', args.seq):
+    print ('The sequence is RNA')
+elif re.search('T', args.seq):
+    print ('The sequence is DNA')
+else:
+    print ('The sequence can be DNA or RNA')
 
 #here we are looking for the motifs added in the input
 if args.motif:
     args.motif = args.motif.upper()
-    print(f'Motif search enabled: looking for motif "{args.motif}" in sequence "{args.seq}"... ', end = '')
+    print('Motif search enabled, output:')
     if re.search(args.motif, args.seq):
         print("FOUND found found")
     else:
